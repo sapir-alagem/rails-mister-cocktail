@@ -1,0 +1,19 @@
+.cards_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+@media(max-width: 992px) {
+  .cards_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media(max-width: 768px) {
+  .cards_grid {
+    grid-template-columns: 1fr;
+  }
+}

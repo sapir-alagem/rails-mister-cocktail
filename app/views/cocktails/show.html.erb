@@ -1,0 +1,28 @@
+<h1 class="d-inline mr-3">The <%= @cocktail.name %></h1>
+
+<table class="table">
+  <thead>
+    <th>DOSE</th>
+    <th>INGREDIENTS</th>
+    <th colspan="3"></th>
+  </thead>
+
+  <tbody>
+    <% @cocktail.doses.each do |dose| %>
+      <tr>
+        <td><%= dose.description %></td>
+        <td><%= dose.ingredient.name %></td>
+        <td><%= link_to 'DELETE', dose_path(dose), method: "delete", class: "btn btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<h3>Add a new dose</h3>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.input :description %>
+  <%= f.association :ingredient %>
+  <%= f.button :submit, class: "btn btn-outline-dark" %>
+<% end %>

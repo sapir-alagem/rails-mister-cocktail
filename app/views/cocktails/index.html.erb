@@ -1,0 +1,9 @@
+<div class="cards_grid">
+  <% @cocktails.each_with_index do |cocktail, index| %>
+    <div class="card">
+      <div class="card-body", style="background-image: url(<%= add_pics(index) %>">
+        <h5 class="card-title"><%= link_to cocktail.name, cocktail, style: "color: white; font-weight: bold;" %></h5>
+      </div>
+    </div>
+  <% end %>
+</div>
