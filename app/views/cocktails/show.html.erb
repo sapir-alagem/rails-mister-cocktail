@@ -1,28 +1,37 @@
-<h1 class="d-inline mr-3">The <%= @cocktail.name %></h1>
+<div class="show_img" >
+  <%= cl_image_tag @cocktail.photo %>
+</div>
 
-<table class="table">
-  <thead>
-    <th>DOSE</th>
-    <th>INGREDIENTS</th>
-    <th colspan="3"></th>
-  </thead>
+<h1 class="mr-3 text-center">The <%= @cocktail.name %></h1>
 
-  <tbody>
-    <% @cocktail.doses.each do |dose| %>
-      <tr>
-        <td><%= dose.description %></td>
-        <td><%= dose.ingredient.name %></td>
-        <td><%= link_to 'DELETE', dose_path(dose), method: "delete", class: "btn btn-dark" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container d-inline-flex my-3 justify-content-between">
+  <div class="ingredients flex-grow-1 mr-5">
+    <table class="table">
+      <thead>
+        <th>DOSE</th>
+        <th>INGREDIENTS</th>
+        <th colspan="3"></th>
+      </thead>
 
+      <tbody>
+        <% @cocktail.doses.each do |dose| %>
+          <tr>
+            <td><%= dose.description %></td>
+            <td><%= dose.ingredient.name %></td>
+            <td><%= link_to 'DELETE', dose_path(dose), method: "delete", class: "btn btn-dark btn-sm", data: {confirm:"Are you sure you want to delete this ingredient?"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
+  <div class="ingredients_form">
+    <h3>Add ingredients</h3>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.button :submit, class: "btn btn-outline-dark" %>
+      <% end %>
+  </div>
+</div>
 
-<h3>Add a new dose</h3>
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient %>
-  <%= f.button :submit, class: "btn btn-outline-dark" %>
-<% end %>

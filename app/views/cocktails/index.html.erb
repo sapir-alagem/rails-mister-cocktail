@@ -1,7 +1,7 @@
 <div class="cards_grid">
-  <% @cocktails.each_with_index do |cocktail, index| %>
+  <% @cocktails.each do |cocktail| %>
     <div class="card">
-      <div class="card-body", style="background-image: url(<%= add_pics(index) %>">
+      <div class="card-body", style="background-image: url('<%= cl_image_path cocktail.photo, higth: 298, width: 286 %>')">
         <h5 class="card-title"><%= link_to cocktail.name, cocktail, style: "color: white; font-weight: bold;" %></h5>
       </div>
     </div>
